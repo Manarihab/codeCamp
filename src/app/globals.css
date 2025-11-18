@@ -1,2 +1,17 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+
+@layer utilities{
+  .container{
+    margin-inline: auto;
+    max-width: 90%;
+  }
+}
+
+@theme{
+  --color-main:#413F9D;
+}
+
+nav svg {
+  margin-inline: 5px;
+}
