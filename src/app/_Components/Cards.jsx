@@ -1,7 +1,7 @@
 import Image from "next/image";
-import card from "./assete/card.png";
-import card1 from "./assete/card1.png";
-import "./CSS/card.css";
+import card from "../../assete/card.png";
+import card1 from "../../assete/card1.png";
+import "../../CSS/card.css";
 
 export default function Cards() {
   return (

@@ -1,11 +1,11 @@
 'use client'
 import React from 'react';
 import Image from 'next/image';
-import "./CSS/footer.css"
+import "../../CSS/footer.css"
 // استيراد الصور
-import paypalImg from './assete/paypal.png';
-import visaImg from './assete/visa.png';
-import stripeImg from './assete/stripe.png';
+import paypalImg from '../../assete/paypal.png';
+import visaImg from '../../assete/visa.png';
+import stripeImg from '../../assete/stripe.png';
 
 export default function Footer() {
   return (
