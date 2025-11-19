@@ -10,8 +10,17 @@
 
 @theme{
   --color-main:#413F9D;
+  --color-sec:#201F4A;
+  --color-light-gray:#5F5E5E;
+  --color-main2:#5755C3;
 }
 
 nav svg {
   margin-inline: 5px;
+}
+.swiper-button-next,
+.swiper-button-prev,
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none !important;
 }
