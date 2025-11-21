@@ -2,7 +2,6 @@
 import React from 'react';
 import Image from 'next/image';
 import "./CSS/footer.css"
-// استيراد الصور
 import paypalImg from './assete/paypal.png';
 import visaImg from './assete/visa.png';
 import stripeImg from './assete/stripe.png';
@@ -10,7 +9,6 @@ import stripeImg from './assete/stripe.png';
 export default function Footer() {
   return (
     <footer className="footer">
-      {/* قسم عن الشركة */}
       <div className="footer-section about">
         <h2>CodeCamp</h2>
         <p>
@@ -20,14 +18,12 @@ export default function Footer() {
         </p>
       </div>
 
-      {/* قسم طرق الدفع */}
       <div className="footer-section payments">
         <Image src={paypalImg} alt="PayPal" width={60} height={40} />
         <Image src={visaImg} alt="Visa" width={60} height={40} />
         <Image src={stripeImg} alt="Stripe" width={60} height={40} />
       </div>
 
-      {/* قسم الروابط */}
       <div className="footer-section links">
         <p>About us</p>
         <p>Privacy policy</p>
