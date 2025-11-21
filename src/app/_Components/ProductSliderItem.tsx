@@ -3,13 +3,14 @@ import React from "react";
 import productImg from "../../assets/Racing Style Tee Sets - Beige _ M 1.png";
 import { poppins } from "../layout";
 import { products } from "./ProductsSlider";
+import Link from "next/link";
 
 export default function ProductSliderItem({ p }: { p: products }) {
   return (
     <div
       className={`${poppins.className} bg-white card-shadow rounded-2xl shadow-lg py-4 p-4 w-80 h-115`}
     >
-      <div className="relative">
+     <Link href={''}> <div className="relative">
         <div className="absolute p-3 border border-main bottom-2 right-2 rounded-full">
           <svg
             width="30"
@@ -36,10 +37,10 @@ export default function ProductSliderItem({ p }: { p: products }) {
       </div>
       <h3 className="text-lg text-sec pt-3">{p.title}</h3>
       <h2 className="text-2xl text-sec  mt-1">${p.price}</h2>
-
+</Link>
       <div className="flex gap-1.5 items-center">
         <p className="text-light-gray text-xs mt-2 mb-5">{p.discribtion}</p>
-        <button className="bg-main2 text-xs gap-1 text-white py-3 rounded-lg w-50 flex justify-center items-center ">
+        <button className="bg-main2 text-xs gap-1 cursor-pointer text-white py-3 rounded-lg w-50 flex justify-center items-center ">
           <svg
             width="30"
             height="27"

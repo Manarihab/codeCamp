@@ -19,7 +19,7 @@ export default function Slider() {
   
     const swiperRef = useRef(null);
   return (
-    <div className="slider-wrapper relative mt-20 p-12 mx-auto w-5xl">
+    <div className="slider-wrapper relative mt-26 p-12 mx-auto w-5xl">
        
           <button
             onClick={() => swiperRef.current?.slideNext()}

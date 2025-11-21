@@ -21,6 +21,41 @@ export type products = {
 };
 
 export default function DealsSlider() {
+  const deals =[
+    {
+      image:deal1 ,
+      discount: '40%'
+    },
+    {
+      image:deal2 ,
+      discount: '40%'
+    },
+    {
+      image:deal3 ,
+      discount: '40%'
+    },
+    {
+      image:deal1 ,
+      discount: '40%'
+    },
+    {
+      image:deal2 ,
+      discount: '40%'
+    },
+    {
+      image:deal3 ,
+      discount: '40%'
+    },
+    {
+      image:deal1 ,
+      discount: '40%'
+    },
+    {
+      image:deal2 ,
+      discount: '40%'
+    }
+  
+  ]
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
@@ -78,64 +113,18 @@ export default function DealsSlider() {
             setIsEnd(swiper.isEnd);
           }}
         >
-            <SwiperSlide >
+          {deals.map((deal)=>(
+<SwiperSlide >
               <div className="relative mx-2">
-        <Image src={deal1} alt='' width={450} height={450} className="rounded-2xl h-75 object-cover"/>
+        <Image src={deal.image} alt='' width={450} height={450} className="rounded-2xl h-75 object-cover"/>
         <span className="absolute rounded-full w-16 h-16 text-white font-normal flex flex-col justify-center items-center bg-[#3498DB] bottom-1 right-1">
-  40% <br /> OFF
+  {deal.discount} <br /> OFF
 </span>
     </div>
             </SwiperSlide>
-             <SwiperSlide >
-              <div className="relative mx-2">
-        <Image src={deal2} alt='' width={450} height={450} className="rounded-2xl h-75 object-cover"/>
-        <span className="absolute rounded-full w-16 h-16 text-white font-normal flex flex-col justify-center items-center bg-[#3498DB] bottom-1 right-1">
-  40% <br /> OFF
-</span>
-    </div>
-            </SwiperSlide> <SwiperSlide >
-              <div className="relative mx-2">
-        <Image src={deal3} alt='' width={450} height={450} className="rounded-2xl h-75 object-cover"/>
-        <span className="absolute rounded-full w-16 h-16 text-white font-normal flex flex-col justify-center items-center bg-[#3498DB] bottom-1 right-1">
-  40% <br /> OFF
-</span>
-    </div>
-            </SwiperSlide> <SwiperSlide >
-              <div className="relative mx-2">
-        <Image src={deal1} alt='' width={450} height={450} className="rounded-2xl h-75 object-cover"/>
-        <span className="absolute rounded-full w-16 h-16 text-white font-normal flex flex-col justify-center items-center bg-[#3498DB] bottom-1 right-1">
-  40% <br /> OFF
-</span>
-    </div>
-            </SwiperSlide> <SwiperSlide >
-              <div className="relative mx-2">
-        <Image src={deal2} alt='' width={450} height={450} className="rounded-2xl h-75 object-cover"/>
-        <span className="absolute rounded-full w-16 h-16 text-white font-normal flex flex-col justify-center items-center bg-[#3498DB] bottom-1 right-1">
-  40% <br /> OFF
-</span>
-    </div>
-            </SwiperSlide> <SwiperSlide >
-              <div className="relative mx-2">
-        <Image src={deal3} alt='' width={450} height={450} className="rounded-2xl h-75 object-cover"/>
-        <span className="absolute rounded-full w-16 h-16 text-white font-normal flex flex-col justify-center items-center bg-[#3498DB] bottom-1 right-1">
-  40% <br /> OFF
-</span>
-    </div>
-            </SwiperSlide> <SwiperSlide >
-              <div className="relative mx-2">
-        <Image src={deal1} alt='' width={450} height={450} className="rounded-2xl h-75 object-cover"/>
-        <span className="absolute rounded-full w-16 h-16 text-white font-normal flex flex-col justify-center items-center bg-[#3498DB] bottom-1 right-1">
-  40% <br /> OFF
-</span>
-    </div>
-            </SwiperSlide> <SwiperSlide >
-              <div className="relative mx-2">
-        <Image src={deal2} alt='' width={450} height={450} className="rounded-2xl h-75 object-cover"/>
-        <span className="absolute rounded-full w-16 h-16 text-white font-normal flex flex-col justify-center items-center bg-[#3498DB] bottom-1 right-1">
-  40% <br /> OFF
-</span>
-    </div>
-            </SwiperSlide>
+          ))}
+            
+            
          
         </Swiper>
       </div>
