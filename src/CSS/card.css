@@ -7,7 +7,7 @@
 }
 
 .image-card {
-  width: 530px;
+  width: 45%;
   aspect-ratio: 2.8 / 3.5;
   overflow: hidden;
   border-radius: 20px;

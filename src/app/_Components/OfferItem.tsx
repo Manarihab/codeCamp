@@ -3,14 +3,15 @@ import React from "react";
 import productImg from "../../assets/Racing Style Tee Sets - Beige _ M 1.png";
 import { poppins } from "../layout";
 import { products } from "./ProductsSlider";
-import Link from "next/link";
 
-export default function ProductSliderItem({ p }: { p: products }) {
+export default function OfferItem({ p }: { p: products }) {
   return (
     <div
-      className={`${poppins.className} bg-white card-shadow rounded-2xl shadow-lg py-4 p-4 w-80 h-115`}
-    >
-     <Link href={''}> <div className="relative">
+      className={`${poppins.className} relative bg-white card-shadow rounded-2xl shadow-lg py-4 p-4 w-80 h-115`}
+    > <span className="absolute p-1 top-0 right-0 left-0 bg-[#FF1313] z-10 text-2xl font-semibold rounded-tl-2xl rounded-tr-2xl text-white flex justify-center items-center">
+        2:59:59
+    </span>
+      <div className="relative">
         <div className="absolute p-3 border border-main bottom-2 right-2 rounded-full">
           <svg
             width="30"
@@ -37,10 +38,10 @@ export default function ProductSliderItem({ p }: { p: products }) {
       </div>
       <h3 className="text-lg text-sec pt-3">{p.title}</h3>
       <h2 className="text-2xl text-sec  mt-1">${p.price}</h2>
-</Link>
+
       <div className="flex gap-1.5 items-center">
         <p className="text-light-gray text-xs mt-2 mb-5">{p.discribtion}</p>
-        <button className="bg-main2 text-xs gap-1 cursor-pointer text-white py-3 rounded-lg w-50 flex justify-center items-center ">
+        <button className="bg-main2 text-xs gap-1 text-white py-3 rounded-lg w-50 flex justify-center items-center ">
           <svg
             width="30"
             height="27"

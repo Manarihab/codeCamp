@@ -21,8 +21,8 @@ export default function Navbar() {
               className="w-6 h-6"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
-              width={24}
-              height={24}
+              width={20}
+              height={20}
               fill="none"
               viewBox="0 0 24 24"
             >
@@ -39,8 +39,8 @@ export default function Navbar() {
               <div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width={35}
-                  height={35}
+                  width={25}
+                  height={25}
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -81,8 +81,8 @@ export default function Navbar() {
                 <li>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width={35}
-                    height={35}
+                    width={25}
+                    height={25}
                     viewBox="0 0 24 24"
                   >
                     <g
@@ -100,8 +100,8 @@ export default function Navbar() {
                 </li>
                 <li>
                   <svg
-                    width={35}
-                    height={35}
+                    width={25}
+                    height={25}
                     viewBox="0 0 40 36"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -115,8 +115,8 @@ export default function Navbar() {
                 <li>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width={35}
-                    height={35}
+                    width={25}
+                    height={25}
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -132,8 +132,8 @@ export default function Navbar() {
                 <li>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width={35}
-                    height={35}
+                    width={25}
+                    height={25}
                     viewBox="0 0 24 24"
                   >
                     <g
@@ -151,8 +151,8 @@ export default function Navbar() {
                 <li>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width={35}
-                    height={35}
+                    width={25}
+                    height={25}
                     viewBox="0 0 24 24"
                   >
                     <path

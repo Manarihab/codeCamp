@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import ProductSliderItem from "./ProductSliderItem";
 import { inter } from "../layout";
+import OfferItem from "./OfferItem";
 export type products = {
   id: number;
   title: string;
@@ -17,7 +18,7 @@ export type products = {
   image: unknown;
 };
 
-export default function ProductsSlider() {
+export default function OffersSlider() {
   const products = [
     {
       id: 1,
@@ -74,7 +75,7 @@ export default function ProductsSlider() {
   const swiperRef = useRef<SwiperType | null>(null);
   return (
     <>
-    <h3 className={`${inter.className} text-head text-2xl ml-1.5 pt-10 font-semibold`}>Featured Products</h3>
+    <h3 className={`${inter.className} text-head text-2xl ml-1.5 pt-10 font-semibold`}>Don't Miss Out!</h3>
       <div className="relative px-6 py-8">
         {!isEnd && (
           <button
@@ -106,7 +107,7 @@ export default function ProductsSlider() {
                     bg-white w-16 h-16 cursor-pointer z-10 rounded-full shadow-lg"
           >
             <svg width="15" height="40" viewBox="0 0 15 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M13.2498 1.7502L2.3573 19.9186L13.2498 38.0869" stroke="#413F9D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M13.2498 1.7502L2.3573 19.9186L13.2498 38.0869" stroke="#413F9D" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
 
           </button>
@@ -128,7 +129,7 @@ export default function ProductsSlider() {
         >
           {products.map((p) => (
             <SwiperSlide key={p.id}>
-              <ProductSliderItem p={p} />
+              <OfferItem p={p}/>
             </SwiperSlide>
           ))}
         </Swiper>

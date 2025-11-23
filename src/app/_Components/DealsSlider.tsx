@@ -7,8 +7,11 @@ import type { Swiper as SwiperType } from "swiper";
 import "swiper/css/navigation";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import ProductSliderItem from "./ProductSliderItem";
+import deal1 from '../../assets/deal1.jpg'
+import deal2 from '../../assets/deal2.jpg'
+import deal3 from '../../assets/deal3.jpg'
 import { inter } from "../layout";
+import OfferItem from "./OfferItem";
 export type products = {
   id: number;
   title: string;
@@ -17,64 +20,48 @@ export type products = {
   image: unknown;
 };
 
-export default function ProductsSlider() {
-  const products = [
+export default function DealsSlider() {
+  const deals =[
     {
-      id: 1,
-      title: "Racing Style Tee Sets",
-      price: 120,
-      discribtion: "Retro-inspired comfort for the track or street.",
-      image: productImg,
+      image:deal1 ,
+      discount: '40%'
     },
     {
-      id: 2,
-      title: "Racing Style Tee Sets",
-      price: 120,
-      discribtion: "Retro-inspired comfort for the track or street.",
-      image: productImg,
+      image:deal2 ,
+      discount: '40%'
     },
     {
-      id: 3,
-      title: "Racing Style Tee Sets",
-      price: 120,
-      discribtion: "Retro-inspired comfort for the track or street.",
-      image: productImg,
+      image:deal3 ,
+      discount: '40%'
     },
     {
-      id: 4,
-      title: "Racing Style Tee Sets",
-      price: 120,
-      discribtion: "Retro-inspired comfort for the track or street.",
-      image: productImg,
+      image:deal1 ,
+      discount: '40%'
     },
     {
-      id: 5,
-      title: "Racing Style Tee Sets",
-      price: 120,
-      discribtion: "Retro-inspired comfort for the track or street.",
-      image: productImg,
+      image:deal2 ,
+      discount: '40%'
     },
     {
-      id: 6,
-      title: "Racing Style Tee Sets",
-      price: 120,
-      discribtion: "Retro-inspired comfort for the track or street.",
-      image: productImg,
+      image:deal3 ,
+      discount: '40%'
     },
     {
-      id: 7,
-      title: "Racing Style Tee Sets",
-      price: 120,
-      discribtion: "Retro-inspired comfort for the track or street.",
-      image: productImg,
+      image:deal1 ,
+      discount: '40%'
     },
-  ];
+    {
+      image:deal2 ,
+      discount: '40%'
+    }
+  
+  ]
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
   return (
     <>
-    <h3 className={`${inter.className} text-head text-2xl ml-1.5 pt-10 font-semibold`}>Featured Products</h3>
+    <h3 className={`${inter.className} text-head text-2xl ml-1.5 pt-10 font-semibold`}>Grab the best deals</h3>
       <div className="relative px-6 py-8">
         {!isEnd && (
           <button
@@ -106,7 +93,7 @@ export default function ProductsSlider() {
                     bg-white w-16 h-16 cursor-pointer z-10 rounded-full shadow-lg"
           >
             <svg width="15" height="40" viewBox="0 0 15 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M13.2498 1.7502L2.3573 19.9186L13.2498 38.0869" stroke="#413F9D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M13.2498 1.7502L2.3573 19.9186L13.2498 38.0869" stroke="#413F9D" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
 
           </button>
@@ -126,11 +113,19 @@ export default function ProductsSlider() {
             setIsEnd(swiper.isEnd);
           }}
         >
-          {products.map((p) => (
-            <SwiperSlide key={p.id}>
-              <ProductSliderItem p={p} />
+          {deals.map((deal)=>(
+<SwiperSlide >
+              <div className="relative mx-2">
+        <Image src={deal.image} alt='' width={450} height={450} className="rounded-2xl h-75 object-cover"/>
+        <span className="absolute rounded-full w-16 h-16 text-white font-normal flex flex-col justify-center items-center bg-[#3498DB] bottom-1 right-1">
+  {deal.discount} <br /> OFF
+</span>
+    </div>
             </SwiperSlide>
           ))}
+            
+            
+         
         </Swiper>
       </div>
     </>

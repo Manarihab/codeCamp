@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import deliveryTruck from "./assete/delivery-truck.svg";
-import hours24 from "./assete/24-hours.svg";
-import shield from "./assete/shield.svg";
-import "./CSS/info.css"
+import deliveryTruck from "../../assete/delivery-truck.svg";
+import hours24 from "../../assete/24-hours.svg";
+import shield from "../../assete/shield.svg";
+import "../../CSS/info.css"
 
 export default function Features() {
   return (
