@@ -9,66 +9,11 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import ProductSliderItem from "./ProductSliderItem";
 import { inter } from "../layout";
-export type products = {
-  id: number;
-  title: string;
-  price: number;
-  discribtion: string;
-  image: unknown;
-};
+import { Featured } from "@/interfaces/featuredProd";
 
-export default function ProductsSlider() {
-  const products = [
-    {
-      id: 1,
-      title: "Racing Style Tee Sets",
-      price: 120,
-      discribtion: "Retro-inspired comfort for the track or street.",
-      image: productImg,
-    },
-    {
-      id: 2,
-      title: "Racing Style Tee Sets",
-      price: 120,
-      discribtion: "Retro-inspired comfort for the track or street.",
-      image: productImg,
-    },
-    {
-      id: 3,
-      title: "Racing Style Tee Sets",
-      price: 120,
-      discribtion: "Retro-inspired comfort for the track or street.",
-      image: productImg,
-    },
-    {
-      id: 4,
-      title: "Racing Style Tee Sets",
-      price: 120,
-      discribtion: "Retro-inspired comfort for the track or street.",
-      image: productImg,
-    },
-    {
-      id: 5,
-      title: "Racing Style Tee Sets",
-      price: 120,
-      discribtion: "Retro-inspired comfort for the track or street.",
-      image: productImg,
-    },
-    {
-      id: 6,
-      title: "Racing Style Tee Sets",
-      price: 120,
-      discribtion: "Retro-inspired comfort for the track or street.",
-      image: productImg,
-    },
-    {
-      id: 7,
-      title: "Racing Style Tee Sets",
-      price: 120,
-      discribtion: "Retro-inspired comfort for the track or street.",
-      image: productImg,
-    },
-  ];
+
+export default function ProductsSlider({fdata}:{fdata:Featured}) {
+  
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
@@ -112,7 +57,6 @@ export default function ProductsSlider() {
           </button>
         )}
         <Swiper
-          modules={[Navigation]}
           spaceBetween={2}
           slidesPerView={3.3}
           navigation={{ nextEl: ".nxt-btn", prevEl: ".prev-btn" }}
@@ -126,7 +70,7 @@ export default function ProductsSlider() {
             setIsEnd(swiper.isEnd);
           }}
         >
-          {products.map((p) => (
+          {fdata.data.map((p) => (
             <SwiperSlide key={p.id}>
               <ProductSliderItem p={p} />
             </SwiperSlide>

@@ -6,62 +6,28 @@ import "swiper/css";
 import type { Swiper as SwiperType } from "swiper";
 import "swiper/css/navigation";
 import Image from "next/image";
-import { useRef, useState } from "react";
-import deal1 from '../../assets/deal1.jpg'
-import deal2 from '../../assets/deal2.jpg'
-import deal3 from '../../assets/deal3.jpg'
-import { inter } from "../layout";
-import OfferItem from "./OfferItem";
-export type products = {
-  id: number;
-  title: string;
-  price: number;
-  discribtion: string;
-  image: unknown;
-};
+import { useEffect, useRef, useState } from "react";
+import { inter } from "../../layout";
+import { Featured } from "@/interfaces/featuredProd";
+import React from 'react'
+import prodByCat from "@/APIs/prodByCat";
+import { ProdsBy } from "@/interfaces/prodByCat";
+import RelatedItem from "./RelatedItem";
+import { useQuery } from "@tanstack/react-query";
 
-export default function DealsSlider() {
-  const deals =[
-    {
-      image:deal1 ,
-      discount: '40%'
-    },
-    {
-      image:deal2 ,
-      discount: '40%'
-    },
-    {
-      image:deal3 ,
-      discount: '40%'
-    },
-    {
-      image:deal1 ,
-      discount: '40%'
-    },
-    {
-      image:deal2 ,
-      discount: '40%'
-    },
-    {
-      image:deal3 ,
-      discount: '40%'
-    },
-    {
-      image:deal1 ,
-      discount: '40%'
-    },
-    {
-      image:deal2 ,
-      discount: '40%'
-    }
-  
-  ]
-  const [isBeginning, setIsBeginning] = useState(true);
-  const [isEnd, setIsEnd] = useState(false);
-  const swiperRef = useRef<SwiperType | null>(null);
+
+export default  function RelatedProducts() {
+   const {data, isPending} =useQuery<ProdsBy>({queryKey:['rel'],queryFn:async ()=> {
+        const data:ProdsBy= await prodByCat(`7`)
+        return data
+    }})
+    
+    const [isBeginning, setIsBeginning] = useState(true);
+      const [isEnd, setIsEnd] = useState(false);
+      const swiperRef = useRef<SwiperType | null>(null);
   return (
     <>
-    <h3 className={`${inter.className} text-head text-2xl ml-1.5 pt-10 font-semibold`}>Grab the best deals</h3>
+    <h3 className={`${inter.className} text-head text-center text-2xl  pt-10 font-semibold`}>Related Products</h3>
       <div className="relative px-6 py-8">
         {!isEnd && (
           <button
@@ -93,7 +59,7 @@ export default function DealsSlider() {
                     bg-white w-16 h-16 cursor-pointer z-10 rounded-full shadow-lg"
           >
             <svg width="15" height="40" viewBox="0 0 15 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M13.2498 1.7502L2.3573 19.9186L13.2498 38.0869" stroke="#413F9D" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
+  <path d="M13.2498 1.7502L2.3573 19.9186L13.2498 38.0869" stroke="#413F9D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 
           </button>
@@ -111,22 +77,16 @@ export default function DealsSlider() {
             setIsBeginning(swiper.isBeginning);
             setIsEnd(swiper.isEnd);
           }}
-        >
-          {deals.map((deal)=>(
-<SwiperSlide >
-              <div className="relative mx-2">
-        <Image src={deal.image} alt='' width={450} height={450} className="rounded-2xl h-75 object-cover"/>
-        <span className="absolute rounded-full w-16 h-16 text-white font-normal flex flex-col justify-center items-center bg-[#3498DB] bottom-1 right-1">
-  {deal.discount} <br /> OFF
-</span>
-    </div>
+        >{
+            !isPending && data!.products.map((p) => (
+            <SwiperSlide key={p.id}>
+              <RelatedItem p={p}/>
             </SwiperSlide>
-          ))}
-            
-            
-         
+          ))
+        }
+          
         </Swiper>
       </div>
     </>
-  );
+  )
 }

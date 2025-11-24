@@ -1,12 +1,13 @@
+import React from 'react'
 import Image from "next/image";
-import React from "react";
 import productImg from "../../assets/Racing Style Tee Sets - Beige _ M 1.png";
-import { poppins } from "../layout";
+import { poppins } from "../../layout";
 import Link from "next/link";
 import { FeaturedProd, Medum } from "@/interfaces/featuredProd";
+import { ProdBy } from '@/interfaces/prodByCat';
 
-export default function ProductSliderItem({ p }: { p:FeaturedProd }) {
-  const media:Medum[] = p.media
+export default function RelatedItem({p}:{p:ProdBy}) {
+    
   return (
     <div
       className={`${poppins.className} bg-white card-shadow rounded-2xl shadow-lg py-4 p-4 w-80 h-115`}
@@ -29,7 +30,7 @@ export default function ProductSliderItem({ p }: { p:FeaturedProd }) {
           </svg>
         </div>
         <Image
-          src={media[0].original_url}
+          src={p.images[0].url}
           width={300}
           height={300}
           className="w-full rounded-xl object-cover"
@@ -76,5 +77,5 @@ export default function ProductSliderItem({ p }: { p:FeaturedProd }) {
         </button>
       </div>
     </div>
-  );
+  )
 }

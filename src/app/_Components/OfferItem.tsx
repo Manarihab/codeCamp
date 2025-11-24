@@ -1,11 +1,14 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import productImg from "../../assets/Racing Style Tee Sets - Beige _ M 1.png";
 import { poppins } from "../layout";
-import { products } from "./ProductsSlider";
+import { Product } from "@/interfaces/latestProd";
+import Link from "next/link";
 
-export default function OfferItem({ p }: { p: products }) {
+export default function OfferItem({ p }: { p:Product }) {
+ 
   return (
+    <Link href={`ProductDetails/${p.id}`}>
     <div
       className={`${poppins.className} relative bg-white card-shadow rounded-2xl shadow-lg py-4 p-4 w-80 h-115`}
     > <span className="absolute p-1 top-0 right-0 left-0 bg-[#FF1313] z-10 text-2xl font-semibold rounded-tl-2xl rounded-tr-2xl text-white flex justify-center items-center">
@@ -29,18 +32,22 @@ export default function OfferItem({ p }: { p: products }) {
           </svg>
         </div>
         <Image
-          src={productImg}
+          src={p.images[0].url}
           width={300}
           height={300}
           className="w-full rounded-xl object-cover"
           alt=""
+          unoptimized
         />
       </div>
-      <h3 className="text-lg text-sec pt-3">{p.title}</h3>
-      <h2 className="text-2xl text-sec  mt-1">${p.price}</h2>
+      <div className="flex pb-3">
+          <h3 className="text-lg w-3/4 text-sec mt-4 line-clamp-1 ">{p.name}</h3>
+      <h2 className="text-2xl w-1/4 text-sec  mt-4 ">$120</h2>
+      </div>
+      
 
       <div className="flex gap-1.5 items-center">
-        <p className="text-light-gray text-xs mt-2 mb-5">{p.discribtion}</p>
+        <p className="text-light-gray text-xs w-50 line-clamp-2 mt-2 mb-5">{p.description}</p>
         <button className="bg-main2 text-xs gap-1 text-white py-3 rounded-lg w-50 flex justify-center items-center ">
           <svg
             width="30"
@@ -73,5 +80,6 @@ export default function OfferItem({ p }: { p: products }) {
         </button>
       </div>
     </div>
+    </Link>
   );
 }

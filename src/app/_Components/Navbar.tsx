@@ -1,13 +1,51 @@
-import React from "react";
-import { kavoon } from "../layout";
+"use client";
+import { useEffect, useRef, useState } from "react";
+import { inter, kavoon } from "../layout";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
+import type { NavigationOptions } from "swiper/types";
+import "swiper/css";
+import "swiper/css/navigation";
+import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import getCats from "@/APIs/categories";
+import { Cats } from "@/interfaces/cats";
 
 export default function Navbar() {
+  const nextRef = useRef<HTMLButtonElement | null>(null);
+  const prevRef = useRef<HTMLButtonElement | null>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
+
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
+
+  const { data, isPending } = useQuery<Cats>({
+    queryKey: ["cat"],
+    queryFn: async () => await getCats(),
+  });
+
+  // Assign custom navigation buttons once refs and swiper are ready
+useEffect(() => {
+  if (!swiperRef.current || !prevRef.current || !nextRef.current) return;
+
+  const swiper = swiperRef.current;
+  const nav = swiper.params.navigation as NavigationOptions;
+
+  nav.prevEl = prevRef.current;
+  nav.nextEl = nextRef.current;
+
+  swiper.navigation.destroy();
+  swiper.navigation.init();
+  swiper.navigation.update();
+}, [data]);
+    
   return (
     <>
       <nav className="bg-main fixed w-full z-20 top-0 start-0 ">
         <div className="max-w-screen-xl flex flex-wrap items-center mx-auto p-4">
           <div className={`${kavoon.className} text-white text-2xl mx-3 `}>
-            CodeCamp
+            <Link href={'/'}>CodeCamp</Link>
           </div>
           <button
             data-collapse-toggle="navbar-default"
@@ -37,6 +75,7 @@ export default function Navbar() {
           <div className="hidden w-full md:block md:w-auto" id="navbar-default">
             <div className="flex items-center justify-between">
               <div>
+               <Link href='/'>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width={25}
@@ -52,6 +91,7 @@ export default function Navbar() {
                     d="M20 19v-8.5a1 1 0 0 0-.4-.8l-7-5.25a1 1 0 0 0-1.2 0l-7 5.25a1 1 0 0 0-.4.8V19a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1"
                   ></path>
                 </svg>
+               </Link>
               </div>
               <div className="relative mx-5">
                 <input
@@ -169,7 +209,85 @@ export default function Navbar() {
             </div>
           </div>
         </div>
+        <div
+      className={`${inter.className} absolute px-10 -bottom-12 bg-white z-20  flex left-1/2 -translate-x-1/2 rounded-lg p-3  shadow-md w-[90%]  `}
+    >
+      
+        <button ref={nextRef} disabled={isEnd} className="absolute nxt-btn z-30 cursor-pointer right-2 top-1/2 -translate-y-1/2">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 26 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0.466767 27.2176C0.26467 27.0181 0.162754 26.7825 0.161021 26.511C0.159287 26.2395 0.258194 26.0036 0.457739 25.8034L12.4016 13.7061L0.304266 1.76227C0.10217 1.56274 0.000729666 1.32768 -5.4592e-05 1.05709C-0.00083884 0.786505 0.0980605 0.549695 0.296644 0.346662C0.495228 0.143629 0.730288 0.0421886 1.00182 0.0423411C1.27336 0.0424937 1.50922 0.141399 1.70942 0.339058L14.08 12.5527C14.4054 12.874 14.57 13.2538 14.5738 13.6922C14.5775 14.1306 14.4178 14.5126 14.0946 14.838L1.88095 27.2086C1.68142 27.4107 1.44636 27.5121 1.17577 27.5129C0.905186 27.5137 0.668376 27.4148 0.465343 27.2162M11.7507 27.1724C11.5496 26.9738 11.4486 26.7383 11.4478 26.4658C11.447 26.1934 11.5454 25.958 11.7431 25.7597L23.6869 13.6623L11.5896 1.71851C11.3875 1.51898 11.2861 1.28392 11.2853 1.01333C11.2845 0.742747 11.383 0.506412 11.5806 0.304328C11.7783 0.102243 12.0133 0.000803023 12.2858 6.66474e-06C12.5583 -0.000789693 12.7946 0.0976413 12.9948 0.2953L25.3654 12.5089C25.6917 12.8312 25.8559 13.2115 25.8577 13.6499C25.8596 14.0883 25.7003 14.4698 25.3799 14.7942L13.1663 27.1648C12.9668 27.3669 12.7317 27.4683 12.4611 27.4691C12.1906 27.4699 11.9538 27.371 11.7507 27.1724Z"
+              fill="#4F4F4F"
+            />
+          </svg>
+        </button>
+    
+
+        <button ref={prevRef} disabled={isBeginning} className="absolute z-30 prev-btn cursor-pointer left-2 top-1/2 -translate-y-1/2">
+          <svg width="24" height="24" viewBox="0 0 26 28" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(26 0) scale(-1 1)">
+        <path d="M0.466767 27.2176C0.26467 27.0181 0.162754 26.7825 0.161021 26.511C0.159287 26.2395 0.258194 26.0036 0.457739 25.8034L12.4016 13.7061L0.304266 1.76227C0.10217 1.56274 0.000729666 1.32768 -5.4592e-05 1.05709C-0.00083884 0.786505 0.0980605 0.549695 0.296644 0.346662C0.495228 0.143629 0.730288 0.0421886 1.00182 0.0423411C1.27336 0.0424937 1.50922 0.141399 1.70942 0.339058L14.08 12.5527C14.4054 12.874 14.57 13.2538 14.5738 13.6922C14.5775 14.1306 14.4178 14.5126 14.0946 14.838L1.88095 27.2086C1.68142 27.4107 1.44636 27.5121 1.17577 27.5129C0.905186 27.5137 0.668376 27.4148 0.465343 27.2162M11.7507 27.1724C11.5496 26.9738 11.4486 26.7383 11.4478 26.4658C11.447 26.1934 11.5454 25.958 11.7431 25.7597L23.6869 13.6623L11.5896 1.71851C11.3875 1.51898 11.2861 1.28392 11.2853 1.01333C11.2845 0.742747 11.383 0.506412 11.5806 0.304328C11.7783 0.102243 12.0133 0.000803023 12.2858 6.66474e-06C12.5583 -0.000789693 12.7946 0.0976413 12.9948 0.2953L25.3654 12.5089C25.6917 12.8312 25.8559 13.2115 25.8577 13.6499C25.8596 14.0883 25.7003 14.4698 25.3799 14.7942L13.1663 27.1648C12.9668 27.3669 12.7317 27.4683 12.4611 27.4691C12.1906 27.4699 11.9538 27.371 11.7507 27.1724Z" fill="#4F4F4F" />
+      </g>
+    </svg>
+        </button>
+
+
+
+
+ <Swiper
+  modules={[Navigation]}
+  spaceBetween={10}
+  slidesPerView={6}
+  slidesPerGroup={6}
+  navigation={{
+    prevEl: prevRef.current,
+    nextEl: nextRef.current,
+  } as NavigationOptions} // cast for TypeScript
+  onSwiper={(swiper) => {
+    swiperRef.current = swiper;
+
+    // ensure refs exist
+    if (prevRef.current && nextRef.current) {
+      const nav = swiper.params.navigation as NavigationOptions;
+      nav.prevEl = prevRef.current;
+      nav.nextEl = nextRef.current;
+
+      // Re-init navigation after setting refs
+      swiper.navigation.destroy();
+      swiper.navigation.init();
+      swiper.navigation.update();
+    }
+  }}
+  onSlideChange={(swiper) => {
+    setIsBeginning(swiper.isBeginning);
+    setIsEnd(swiper.isEnd);
+  }}
+>
+  {!isPending &&
+    data?.data.map((cat) => (
+      <SwiperSlide key={cat.id} style={{ width: "auto" }}>
+        <Link href={`/categories/${cat.id}`}>{cat.name}</Link>
+      </SwiperSlide>
+    ))}
+</Swiper>
+
+
+
+
+
+      
+
+    </div>
       </nav>
+      
+          
+    
     </>
   );
 }

@@ -10,15 +10,13 @@ import { useRef, useState } from "react";
 import ProductSliderItem from "./ProductSliderItem";
 import { inter } from "../layout";
 import OfferItem from "./OfferItem";
-export type products = {
-  id: number;
-  title: string;
-  price: number;
-  discribtion: string;
-  image: unknown;
-};
+import { useQuery } from "@tanstack/react-query";
+import { LatestProducts } from "@/interfaces/latestProd";
+import latestProducts from "@/APIs/latestProducts";
 
-export default function OffersSlider() {
+export default function OffersSlider({data}:{data:LatestProducts}) {
+  
+  
   const products = [
     {
       id: 1,
@@ -113,7 +111,7 @@ export default function OffersSlider() {
           </button>
         )}
         <Swiper
-          modules={[Navigation]}
+         
           spaceBetween={2}
           slidesPerView={3.3}
           navigation={{ nextEl: ".nxt-btn", prevEl: ".prev-btn" }}
@@ -127,7 +125,7 @@ export default function OffersSlider() {
             setIsEnd(swiper.isEnd);
           }}
         >
-          {products.map((p) => (
+          {data.data.map((p) => (
             <SwiperSlide key={p.id}>
               <OfferItem p={p}/>
             </SwiperSlide>

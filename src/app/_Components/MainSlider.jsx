@@ -19,7 +19,7 @@ export default function Slider() {
   
     const swiperRef = useRef(null);
   return (
-    <div className="slider-wrapper relative mt-26 p-12 mx-auto w-5xl">
+    <div className="slider-wrapper relative -mt-6 p-12 mx-auto w-5xl">
        
           <button
             onClick={() => swiperRef.current?.slideNext()}
@@ -52,7 +52,7 @@ export default function Slider() {
           </button>
         
       <Swiper
-        modules={[Pagination, Navigation, Autoplay]}
+        modules={[Pagination, Autoplay]}
         pagination={{ dynamicBullets: true, clickable: true }}
         navigation={true}
         loop={true}

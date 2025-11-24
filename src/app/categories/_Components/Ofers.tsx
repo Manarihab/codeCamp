@@ -1,36 +1,32 @@
 "use client";
 
 import Image from "next/image";
-import OferImg from "../../assets/0ed02d014fba2362439472ce01639d2a6853d13e.jpg";
-import "../../CSS/ProductsSlider.css";
+import OferImg from "../../../assets/0ed02d014fba2362439472ce01639d2a6853d13e.jpg";
+import "../../../CSS/ProductsSlider.css";
+import { poppins } from "@/app/layout";
+import { ProdsBy } from "@/interfaces/prodByCat";
+import Link from "next/link";
 
-export default function ProductsSlider() {
-  const Products = [
-    { id: 1, image: OferImg, name: "LG UHD 4K TV", price: "120$" },
-    { id: 2, image: OferImg, name: "LG UHD 4K TV", price: "120$" },
-    { id: 3, image: OferImg, name: "LG UHD 4K TV", price: "120$" },
-    { id: 4, image: OferImg, name: "LG UHD 4K TV", price: "120$" },
-    { id: 5, image: OferImg, name: "LG UHD 4K TV", price: "120$" },
-    { id: 6, image: OferImg, name: "LG UHD 4K TV", price: "120$" },
-    { id: 7, image: OferImg, name: "LG UHD 4K TV", price: "120$" },
-    { id: 8, image: OferImg, name: "LG UHD 4K TV", price: "120$" },
-  ];
-
+export default function ProductsSlider({data}:{data:ProdsBy}) {
+ 
   return (
-    <div className="productsGridWrapper">
+    <div className={`${poppins.className} productsGridWrapper`}>
       <div className="productsGrid">
-        {Products.map((item) => (
+        {data.products.map((item) => (
+          
           <div key={item.id} className="pBox">
+            <Link href={`/ProductDetails/${item.id}`}>
             <Image
-              src={item.image}
+              src={item.images[0].url}
               width={250}
               height={180}
               alt="product"
               className="pImage"
+              unoptimized
             />
             <div className="productRow ">
-            <h3 className="pName">{item.name}</h3>
-            <p className="pPrice">{item.price}</p>
+            <h3 className="pName line-clamp-1 ">{item.name}</h3>
+            <p className="pPrice ">120$</p>
             </div>
             <h4>55”4k</h4>
 
@@ -52,7 +48,9 @@ export default function ProductsSlider() {
                       <circle cx={17} cy={20} r={1}></circle>
                     </g>
                   </svg>Add to Cart</button>
+                  </Link>
           </div>
+          
         ))}
       </div>
     </div>

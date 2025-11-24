@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter, Poppins,Kavoon } from "next/font/google";
 import "./globals.css";
 import Navbar from "./_Components/Navbar";
 import Footer from './_Components/Footer';
+import Providers from "@/Providers/ReactQuery.Provider";
 export const inter = Inter({
   subsets:['latin']
 });
@@ -39,11 +40,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Providers>
         <Navbar/>
-        <div className="my-20 container">
+        <div className="my-36 container">
            {children}
         </div>
         <Footer/>
+        </Providers>
       </body>
     </html>
   );

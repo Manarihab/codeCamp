@@ -1,6 +1,6 @@
 "use client";
 
-import "../../CSS/Filter.css";
+import "../../../CSS/Filter.css";
 
 export default function FilterButton() {
   return (
