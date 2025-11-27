@@ -18,7 +18,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export default  function RelatedProducts() {
    const {data, isPending} =useQuery<ProdsBy>({queryKey:['rel'],queryFn:async ()=> {
-        const data:ProdsBy= await prodByCat(`7`)
+        const data:ProdsBy= await prodByCat(`1`)
         return data
     }})
     
@@ -59,7 +59,7 @@ export default  function RelatedProducts() {
                     bg-white w-16 h-16 cursor-pointer z-10 rounded-full shadow-lg"
           >
             <svg width="15" height="40" viewBox="0 0 15 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M13.2498 1.7502L2.3573 19.9186L13.2498 38.0869" stroke="#413F9D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M13.2498 1.7502L2.3573 19.9186L13.2498 38.0869" stroke="#413F9D" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
 
           </button>

@@ -16,19 +16,18 @@ export default function Navbar() {
   const nextRef = useRef<HTMLButtonElement | null>(null);
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const swiperRef = useRef<SwiperType | null>(null);
-
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
-
+  const [l, setL] = useState(0)
   const { data, isPending } = useQuery<Cats>({
     queryKey: ["cat"],
     queryFn: async () => await getCats(),
   });
-
-  // Assign custom navigation buttons once refs and swiper are ready
+  
+  
 useEffect(() => {
   if (!swiperRef.current || !prevRef.current || !nextRef.current) return;
-
+  {!isPending &&  data!.data.length >=10 ? setL(10) : setL(data!.data.length)}
   const swiper = swiperRef.current;
   const nav = swiper.params.navigation as NavigationOptions;
 
@@ -238,27 +237,27 @@ useEffect(() => {
         </button>
 
 
-
-
- <Swiper
+{!isPending && <Swiper
   modules={[Navigation]}
-  spaceBetween={10}
-  slidesPerView={6}
-  slidesPerGroup={6}
+  spaceBetween={1}
+  slidesPerView={l}
+  slidesPerGroup={5}
+  observer={true}
+observeParents={true}
   navigation={{
     prevEl: prevRef.current,
     nextEl: nextRef.current,
-  } as NavigationOptions} // cast for TypeScript
+  } as NavigationOptions} 
   onSwiper={(swiper) => {
     swiperRef.current = swiper;
 
-    // ensure refs exist
+  
     if (prevRef.current && nextRef.current) {
       const nav = swiper.params.navigation as NavigationOptions;
       nav.prevEl = prevRef.current;
       nav.nextEl = nextRef.current;
 
-      // Re-init navigation after setting refs
+      
       swiper.navigation.destroy();
       swiper.navigation.init();
       swiper.navigation.update();
@@ -270,12 +269,14 @@ useEffect(() => {
   }}
 >
   {!isPending &&
-    data?.data.map((cat) => (
-      <SwiperSlide key={cat.id} style={{ width: "auto" }}>
+    data!.data.map((cat) => (
+      <SwiperSlide key={cat.id} className="w-auto! px-4">
         <Link href={`/categories/${cat.id}`}>{cat.name}</Link>
       </SwiperSlide>
     ))}
-</Swiper>
+</Swiper>}
+
+ 
 
 
 

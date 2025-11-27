@@ -7,10 +7,10 @@ import type { Swiper as SwiperType } from "swiper";
 import { Navigation } from "swiper/modules";
 import { Swiper } from "swiper/react";
 import { SwiperSlide } from "swiper/react";
-import {  Img } from "@/interfaces/singleProd";
+import {  Img} from "@/interfaces/singleProd";
 
 export default function ProductSlider({ images }: { images:Img[] }) {
-  console.log(images);
+  
   
   const swiperRef = useRef<SwiperType | null>(null);
   return (

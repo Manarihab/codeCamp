@@ -8,6 +8,6 @@ export interface Cats {
 export interface Cat {
   id: number
   name: string
-  description?: string
-  parent_id?: number
+  description: string
+  parent_id: number
 }

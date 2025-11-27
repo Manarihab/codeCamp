@@ -10,7 +10,7 @@ import RelatedProducts from "../_Components/RelatedProducts";
 export default async function page({params}:{params:Promise<{id:string}>}) {
   const {id} = await params
   const data:SingleProd= await singleProduct(id)
- console.log(data.images);
+ 
  
  return (
     <>
@@ -23,7 +23,7 @@ export default async function page({params}:{params:Promise<{id:string}>}) {
         </div>
       </div>
       <ProductDetailsTabs prod={data}/>
-      <RelatedProducts/>
+  <RelatedProducts />
     </>
   );
 }

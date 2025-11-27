@@ -33,9 +33,9 @@ export default function OfferItem({ p }: { p:Product }) {
         </div>
         <Image
           src={p.images[0].url}
-          width={300}
+          width={200}
           height={300}
-          className="w-full rounded-xl object-cover"
+          className="w-full h-80 rounded-xl object-cover"
           alt=""
           unoptimized
         />

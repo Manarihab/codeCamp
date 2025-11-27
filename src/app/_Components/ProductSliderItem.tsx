@@ -30,9 +30,9 @@ export default function ProductSliderItem({ p }: { p:FeaturedProd }) {
         </div>
         <Image
           src={media[0].original_url}
-          width={300}
+          width={200}
           height={300}
-          className="w-full rounded-xl object-cover"
+          className="w-full h-80 rounded-xl object-cover"
           alt=""
           unoptimized
         />
